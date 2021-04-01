@@ -1,0 +1,49 @@
+/* 공통 font */
+@charset "UTF-8";
+
+/* 정선동강체  Regular */
+@font-face {
+	font-family: 'JSDongkang-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 넥슨 Lv.1 고딕 Regular */
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 에스코어드림Lt */
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+div {
+	font-family: 'JSDongkang-Regular';
+}
+
+/* 페이지 이동 경로 태그 설정 */
+#route a {
+	color: black;
+	font-weight: bold;
+	font-size: 15px;
+	text-decoration: none;
+}
+
+#title {
+	font-family: 'NEXON Lv1 Gothic OTF';
+}
+
+#necessaryTag {
+	color: red;
+	font-size: small;
+}

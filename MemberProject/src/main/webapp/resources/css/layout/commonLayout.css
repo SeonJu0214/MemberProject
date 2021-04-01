@@ -1,0 +1,46 @@
+/* 공통 Layout 틀 */
+@charset "UTF-8";
+
+div#wrap {
+	width: 100%;
+	margin: 0 auto;
+}
+
+section#container {
+	margin: 30px;
+}
+
+div#warp, header#header, nav#nav, section#container, div.content {
+	padding: 10px;
+}
+
+/* ---------- */
+div.content {
+	float: center;
+	padding: 10px;
+}
+
+section#container::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+@media screen and (max-width: 910px) {
+	div#wrap {
+		width: calc(100% - 20px);
+	}
+	div.content {
+		width: calc(100% - 20px - 240px - 20px);
+	}
+	aside#aside {
+		width: 220px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	div.content, aside#aside {
+		width: calc(100% - 20px);
+		float: none;
+	}
+}
