@@ -145,21 +145,30 @@
 										<col style="width: 20%">
 									</colgroup>
 									<tr>
-										<td colspan="2"><input type="checkbox" id="agreeAllChk"
-											name="agreeAllChk"> &nbsp;<a id="agreeAllMsg">약관
-												전체 동의</a></td>
+										<td colspan="2">
+											<label for="agreeAllChk" style="cursor:pointer">
+											<input type="checkbox" id="agreeAllChk" name="agreeAllChk">
+											&nbsp;<a id="agreeAllMsg">약관전체 동의</a>
+											</label>
+										</td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="agreeTos" name="agreeChk"
-											value="true"> &nbsp;이용약관&nbsp; <a
-											id="necessaryTag">(필수)</a></td>
+										<td>
+											<label for="agreeTos" style="cursor:pointer">
+											<input type="checkbox" id="agreeTos" name="agreeChk"
+											value="true">&nbsp;이용약관&nbsp;<a
+											id="necessaryTag">(필수)</a>
+											</label></td>
 										<td><a href="javascript:void(0);" class="agreeDetail"
 											id="tosDetail">보기</a></td>
 									</tr>
 									<tr>
-										<td><input type="checkbox" id="agreePrivacy"
-											name="agreeChk" value="true"> &nbsp;개인정보 처리방침&nbsp; <a
-											id="necessaryTag">(필수)</a></td>
+										<td>
+											<label for="agreePrivacy" style="cursor:pointer">
+											<input type="checkbox" id="agreePrivacy"
+											name="agreeChk" value="true">&nbsp;개인정보 처리방침&nbsp;<a
+											id="necessaryTag">(필수)</a>
+											</label></td>
 										<td><a href="javascript:void(0);" class="agreeDetail"
 											id="privacyDetail">보기</a></td>
 									</tr>
