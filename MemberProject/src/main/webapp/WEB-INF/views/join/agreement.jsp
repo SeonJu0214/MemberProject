@@ -84,7 +84,7 @@
 					}
 				} else {
 					// 약관 동의를 완료한 경우 다음 가입 절차로 넘어감 (회원 정보 입력)
-					location.href = '${root}join/informationInsert';
+					location.href = '${root}join/memberInsert';
 				}
 			});
 
@@ -158,9 +158,12 @@
 											<input type="checkbox" id="agreeTos" name="agreeChk"
 											value="true">&nbsp;이용약관&nbsp;<a
 											id="necessaryTag">(필수)</a>
-											</label></td>
-										<td><a href="javascript:void(0);" class="agreeDetail"
-											id="tosDetail">보기</a></td>
+											</label>
+										</td>
+										<td>
+											<a href="javascript:void(0);" class="agreeDetail"
+											id="tosDetail">보기</a>
+										</td>
 									</tr>
 									<tr>
 										<td>
@@ -168,11 +171,15 @@
 											<input type="checkbox" id="agreePrivacy"
 											name="agreeChk" value="true">&nbsp;개인정보 처리방침&nbsp;<a
 											id="necessaryTag">(필수)</a>
-											</label></td>
-										<td><a href="javascript:void(0);" class="agreeDetail"
-											id="privacyDetail">보기</a></td>
+											</label>
+										</td>
+										<td>
+											<a href="javascript:void(0);" class="agreeDetail"
+											id="privacyDetail">보기</a>
+										</td>
 									</tr>
-								</table> <!-- 약관 내용 테이블 END -->
+								</table>
+								<!-- 약관 내용 테이블 END -->
 							</th>
 						</tr>
 						<tr>

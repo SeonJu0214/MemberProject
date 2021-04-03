@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.kr.mem.member.memberMapper">
-
+	<!-- 회원 정보 입력 -->
+	<insert id="memberInsert" parameterType="MemberDTO">
+		INSERT
+		INTO member(mem_id, mem_pw, mem_email, mem_phone, mem_name, 
+					mem_gender, mem_birth, mem_platform, mem_date, mem_del, admin_auth)
+		VALUES (#{mem_id}, #{mem_pw}, #{mem_email}, #{mem_phone}, #{mem_name},
+				 #{mem_gender}, #{mem_birth}, #{mem_platform}, now(), 0, 0)
+	</insert>
 </mapper>

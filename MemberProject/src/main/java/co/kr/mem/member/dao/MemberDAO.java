@@ -1,5 +1,8 @@
 package co.kr.mem.member.dao;
 
-public interface MemberDAO {
+import co.kr.mem.member.model.MemberDTO;
 
+public interface MemberDAO {
+	// 회원 정보 입력
+	public void memberInsert(MemberDTO memberDTO);
 }

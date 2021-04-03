@@ -25,6 +25,10 @@
 					</div>
 					<hr>
 					<c:out value="${agree_tos}" />
+					
+					<div class="text-center">
+						<button class="btn btn-secondary btn-lg">닫기</button>
+					</div>
 				</div>
 
 			</div>
