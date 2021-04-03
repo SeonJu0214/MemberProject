@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- form 태그 라이브러리 : HTML 폼에 데이터를 바인딩하거나 에러 메시지 처리 등을 간편하게 할 수 있다. -->
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
@@ -21,11 +22,13 @@
 				<div class="col-sm-2"></div>
 
 				<div class="col-sm-8">
+				<!-- 회원 정보 입력 START -->
 				<form:form action="${root}join/memberInsert" id="memberInsertForm" name="memberInsertForm"
 					modelAttribute="memberDTO" method="POST">
 					<!-- 사이트 내 회원 가입 플랫폼 이용시  NOMAL 회원으로 가입 -->
 					<form:hidden path="mem_platform" value="NOMAL" />
 					<table class="table">
+						<!-- 테이블의 넓이를 고정시키는 태그 ( 100% ) -->
 						<colgroup>
 							<col style="width: 30%">
 							<col style="width: 70%">
@@ -58,6 +61,7 @@
 						<tr>
 							<th>ID<a id="necessaryTag"> *</a></th>
 							<th>
+								<!-- path : id, name을 한꺼번에 설정해줌! -->
 								<form:input path="mem_id" class="form-control" autocomplete="off"/>
 								<div id="memberIdCheckMsg" class="msg">
 									<a id="necessaryTag"><form:errors path="mem_id"/></a>
@@ -67,6 +71,7 @@
 						<tr>
 							<th>비밀번호<a id="necessaryTag"> *</a></th>
 							<th>
+								<!-- password : 입력한 문자를 ● 요렇게 보이게 해줌 ( 보안 ) -->
 								<form:password path="mem_pw" class="form-control" autocomplete="off"/>
 								<div id="memberPwCheckMsg" class="msg">
 									<a id="necessaryTag"><form:errors path="mem_pw"/></a>
@@ -76,6 +81,7 @@
 						<tr>
 							<th>비밀번호 확인<a id="necessaryTag"> *</a></th>
 							<th>
+								<!-- 비밀번호 확인은 DB에 전송할 필요가 없기 때문에 기본 태그를 활용 -->
 								<input type="password" class="form-control" id="pw_check">
 								<div id="pwChkMsg" class="msg"></div>
 							</th>
@@ -132,6 +138,7 @@
 						id="resetBtn">다시 입력</button>
 					</div>
 				</form:form>
+				<!-- 회원 정보 입력 END -->
 				</div>
 
 				<div class="col-sm-2"></div>

@@ -21,6 +21,12 @@ import lombok.ToString;
 public class MemberDTO {
 	// member table ( 회원 정보 테이블 )
 
+	/*
+	 * 주의해야 할 점 !!
+	 * @NotBlank 이 어노테이션은 정수형 타입을 받을 땐 사용할 수 없습니다.
+	 * @Length 이 어노테이션을 사용할 때 NULL 값이 들어가도 되는 컬럼엔 반드시 min 값을 0으로 설정해야 합니다.
+	 */
+	
 	// [ 회원 ID ( PK ) ]
 	@NotBlank(message = "값을 입력해주세요.")
 	@Length(min = 8, max = 30, message = "8자 ~ 30자 이내로 입력해주세요.")
