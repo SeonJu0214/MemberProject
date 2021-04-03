@@ -15,8 +15,12 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver" />
+		<!-- 
+			MY-SQL 연동
+			스키마 : member
+		 -->
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/portfolio?serverTimezone=UTC" />
+			value="jdbc:mysql://localhost:3306/member?serverTimezone=UTC" />
 		<property name="username" value="root" />
 		<property name="password" value="12345" />
 	</bean>
