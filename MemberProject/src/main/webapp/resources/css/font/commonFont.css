@@ -21,7 +21,7 @@ div {
 	text-decoration: none;
 }
 
-#necessaryTag {
+#necessaryTag, .msg {
 	color: red;
 	font-size: small;
 }

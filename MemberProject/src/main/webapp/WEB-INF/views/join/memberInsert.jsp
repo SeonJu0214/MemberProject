@@ -14,6 +14,23 @@
 </style>
 </head>
 <body>
+
+<script type="text/javascript">
+	$("#mem_id").change(function(){
+		var mem_id = $("#mem_id").val();
+		
+		if($("#mem_id").val() != null) {
+			
+		} else {
+			$('#memberIdCheckMsg').empty();
+			$('#memberIdCheckMsg').html("값을 입력해주세요.");
+			$('#memberIdCheckMsg').css('color', 'red');
+			$("#mem_id").focus();
+			$('button#joinBtn').attr("disabled", true);
+		}
+	});
+</script>
+
 <%@include file="../include/title.jsp"%>
 	<div id="wrap">
 
