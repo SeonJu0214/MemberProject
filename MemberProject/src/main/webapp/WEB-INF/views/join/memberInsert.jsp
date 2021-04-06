@@ -16,19 +16,60 @@
 <body>
 
 <script type="text/javascript">
-	$("#mem_id").change(function(){
-		var mem_id = $("#mem_id").val();
-		
-		if($("#mem_id").val() != null) {
+	$(document).ready(function(){
+		$("#mem_id").change(function(){
+			var id = "#mem_id";
+			var msgID = "#memberIdCheckMsg";
 			
-		} else {
-			$('#memberIdCheckMsg').empty();
-			$('#memberIdCheckMsg').html("값을 입력해주세요.");
-			$('#memberIdCheckMsg').css('color', 'red');
-			$("#mem_id").focus();
-			$('button#joinBtn').attr("disabled", true);
-		}
+			lengthCheck(id, 8, 30, msgID);
+		});
+		
+		$("#mem_pw").change(function(){
+			var id = "#mem_pw";
+			var msgID = "#memberPwCheckMsg";
+			
+			lengthCheck(id, 8, 30, msgID);
+		});
+		
+		$("#mem_email").change(function(){
+			var id = "#mem_email";
+			var msgID = "#memberEmailCheckMsg";
+			
+			lengthCheck(id, 8, 100, msgID);
+		});
+		
+		$("#mem_phone").change(function(){
+			var id = "#mem_phone";
+			var msgID = "#memberPhoneCheckMsg";
+			
+			lengthCheck(id, 8, 20, msgID);
+		});
+		
+		$("#mem_name").change(function(){
+			var id = "#mem_name";
+			var msgID = "#memberNameCheckMsg";
+			
+			lengthCheck(id, 0, 50, msgID);
+		});
+		
 	});
+	
+	function lengthCheck(id, min, max, msgID) {
+		var item = $(id).val();
+		var msg = min + "자 ~ " + max + "자 이내로 입력해주세요.";
+		
+		if(item.length < min || item.length > max ) {
+			$(msgID).empty();
+			$(msgID).html(msg);
+			$(msgID).css('color', 'red');
+			$(id).focus();
+			$('button#joinBtn').attr("disabled", true);
+		} else {
+			$(msgID).empty();
+			$(msgID).html("");
+			$('button#joinBtn').attr("disabled", false);
+		}
+	}
 </script>
 
 <%@include file="../include/title.jsp"%>

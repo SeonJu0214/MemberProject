@@ -30,6 +30,7 @@ public class MemberDTO {
 	// [ 회원 ID ( PK ) ]
 	@NotBlank(message = "값을 입력해주세요.")
 	@Length(min = 8, max = 30, message = "8자 ~ 30자 이내로 입력해주세요.")
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-zA-Z])[A-Za-z\\d]*$", message = "영어와 숫자만 입력할 수 있습니다.")
 	private String mem_id;
 
 	// [ 회원 비밀번호 ]
