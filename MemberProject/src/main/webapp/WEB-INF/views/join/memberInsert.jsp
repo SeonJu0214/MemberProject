@@ -22,6 +22,8 @@
 			var msgID = "#memberIdCheckMsg";
 			
 			lengthCheck(id, 8, 30, msgID);
+			spaceCheck(id, msgID);
+			checkSpecial(id, msgID);
 		});
 		
 		$("#mem_pw").change(function(){
@@ -29,6 +31,7 @@
 			var msgID = "#memberPwCheckMsg";
 			
 			lengthCheck(id, 8, 30, msgID);
+			spaceCheck(id, msgID);
 		});
 		
 		$("#mem_email").change(function(){
@@ -36,6 +39,7 @@
 			var msgID = "#memberEmailCheckMsg";
 			
 			lengthCheck(id, 8, 100, msgID);
+			spaceCheck(id, msgID);
 		});
 		
 		$("#mem_phone").change(function(){
@@ -43,6 +47,7 @@
 			var msgID = "#memberPhoneCheckMsg";
 			
 			lengthCheck(id, 8, 20, msgID);
+			spaceCheck(id, msgID);
 		});
 		
 		$("#mem_name").change(function(){
@@ -50,10 +55,11 @@
 			var msgID = "#memberNameCheckMsg";
 			
 			lengthCheck(id, 0, 50, msgID);
+			spaceCheck(id, msgID);
 		});
-		
 	});
 	
+	// 문자 길이 검사
 	function lengthCheck(id, min, max, msgID) {
 		var item = $(id).val();
 		var msg = min + "자 ~ " + max + "자 이내로 입력해주세요.";
@@ -68,6 +74,32 @@
 			$(msgID).empty();
 			$(msgID).html("");
 			$('button#joinBtn').attr("disabled", false);
+		}
+	}
+	
+	// 문자 공백 검사
+	function spaceCheck(id, msgID) {
+		var item = $(id).val();
+		
+		if(item.search(/\s/) != -1) {
+			$(msgID).empty();
+			$(msgID).html("공백을 포함할 수 없습니다.");
+			$(msgID).css('color', 'red');
+			$(id).focus();
+			$('button#joinBtn').attr("disabled", true);
+		}
+	}
+	
+	function checkSpecial(id, msgID) { 
+		var item = $(id).val();
+		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi; 
+		
+		if(special_pattern.test(item) == true) { 
+			$(msgID).empty();
+			$(msgID).html("특수문자는 입력할 수 없습니다.");
+			$(msgID).css('color', 'red');
+			$(id).focus();
+			$('button#joinBtn').attr("disabled", true);
 		}
 	}
 </script>
