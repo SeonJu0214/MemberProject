@@ -20,18 +20,19 @@
 		$("#mem_id").change(function(){
 			var id = "#mem_id";
 			var msgID = "#memberIdCheckMsg";
+			var pattern = "englishNumber";
 			
 			lengthCheck(id, 8, 30, msgID);
-			spaceCheck(id, msgID);
-			checkSpecial(id, msgID);
+			charPatternCheck(id, msgID, pattern);
 		});
 		
 		$("#mem_pw").change(function(){
 			var id = "#mem_pw";
 			var msgID = "#memberPwCheckMsg";
+			var pattern = "englishNumber";
 			
 			lengthCheck(id, 8, 30, msgID);
-			spaceCheck(id, msgID);
+			charPatternCheck(id, msgID, pattern);
 		});
 		
 		$("#mem_email").change(function(){
@@ -39,43 +40,26 @@
 			var msgID = "#memberEmailCheckMsg";
 			
 			lengthCheck(id, 8, 100, msgID);
-			spaceCheck(id, msgID);
 		});
 		
 		$("#mem_phone").change(function(){
 			var id = "#mem_phone";
 			var msgID = "#memberPhoneCheckMsg";
+			var pattern = "number";
 			
 			lengthCheck(id, 8, 20, msgID);
-			spaceCheck(id, msgID);
+			charPatternCheck(id, msgID, pattern);
 		});
 		
 		$("#mem_name").change(function(){
 			var id = "#mem_name";
 			var msgID = "#memberNameCheckMsg";
+			var pattern = "special";
 			
 			lengthCheck(id, 0, 50, msgID);
-			spaceCheck(id, msgID);
+			charPatternCheck(id, msgID, pattern);
 		});
 	});
-	
-	// 문자 길이 검사
-	function lengthCheck(id, min, max, msgID) {
-		var item = $(id).val();
-		var msg = min + "자 ~ " + max + "자 이내로 입력해주세요.";
-		
-		if(item.length < min || item.length > max ) {
-			$(msgID).empty();
-			$(msgID).html(msg);
-			$(msgID).css('color', 'red');
-			$(id).focus();
-			$('button#joinBtn').attr("disabled", true);
-		} else {
-			$(msgID).empty();
-			$(msgID).html("");
-			$('button#joinBtn').attr("disabled", false);
-		}
-	}
 	
 	// 문자 공백 검사
 	function spaceCheck(id, msgID) {
@@ -90,16 +74,56 @@
 		}
 	}
 	
-	function checkSpecial(id, msgID) { 
-		var item = $(id).val();
-		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi; 
+	// 문자 길이 검사
+	function lengthCheck(id, min, max, msgID) {
+		spaceCheck(id, msgID);
 		
-		if(special_pattern.test(item) == true) { 
+		var item = $(id).val();
+		var msg = min + "자 ~ " + max + "자 이내로 입력해주세요.";
+		
+		if(item.length < min || item.length > max ) {
 			$(msgID).empty();
-			$(msgID).html("특수문자는 입력할 수 없습니다.");
+			$(msgID).html(msg);
 			$(msgID).css('color', 'red');
 			$(id).focus();
 			$('button#joinBtn').attr("disabled", true);
+		}
+	}
+
+	// 입력 문자 검사
+	function charPatternCheck(id, msgID, pattern) {
+		var item = $(id).val();
+		var reg_special = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+		var reg_english_num = /^[a-z|A-Z|0-9|\*]+$/;
+		var reg_number = /^[0-9|\*]+$/;
+		var error = false;
+		var msg;
+
+		if(pattern == "special" && reg_special.test(item) == true) { 
+			error = true;
+			msg = "특수문자는 입력할 수 없습니다.";
+		}
+		
+		if(pattern == "englishNumber" && reg_english_num.test(item) == false) { 
+			error = true;
+			msg = "영어와 숫자만 입력할 수 있습니다.";
+		}
+		
+		if(pattern == "number" && reg_number.test(item) == false) {
+			error = true;
+			msg = "숫자만 입력할 수 있습니다.";
+		}
+		
+		if(error == true) {
+			$(msgID).empty();
+			$(msgID).html(msg);
+			$(msgID).css('color', 'red');
+			$(id).focus();
+			$('button#joinBtn').attr("disabled", true);
+		} else {
+			$(msgID).empty();
+			$(msgID).html("");
+			$('button#joinBtn').attr("disabled", false);
 		}
 	}
 </script>
