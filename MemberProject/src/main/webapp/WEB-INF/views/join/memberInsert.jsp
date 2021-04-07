@@ -42,10 +42,10 @@
 					success : function(data) {
 						if (data == 0 && $.trim(mem_id) != '') {
 							var msg = "사용 가능한 ID입니다.";
-							ajaxMsg(msgID, msg);
+							trueMsg(msgID, msg);
 						} else {
 							var msg = "이미 사용중인 ID입니다.";
-							patternCheckMsg(msgID, id, msg);
+							falseMsg(msgID, id, msg);
 						}
 					},
 					error : function(data) {
@@ -74,10 +74,10 @@
 			
 			if(mem_pw != pw_check) {
 				var msg = "비밀번호가 일치하지 않습니다.";
-				patternCheckMsg(msgID, id, msg);
+				falseMsg(msgID, id, msg);
 			} else {
 				var msg = "비밀번호 확인 완료";
-				ajaxMsg(msgID, msg);
+				trueMsg(msgID, msg);
 			}
 		});
 		
@@ -101,10 +101,10 @@
 					success : function(data) {
 						if (data == 0 && $.trim(mem_email) != '') {
 							var msg = "사용 가능한 이메일입니다.";
-							ajaxMsg(msgID, msg);
+							trueMsg(msgID, msg);
 						} else {
 							var msg = "이미 사용중인 이메일입니다.";
-							patternCheckMsg(msgID, id, msg);
+							falseMsg(msgID, id, msg);
 						}
 					},
 					error : function(data) {
@@ -135,10 +135,10 @@
 					success : function(data) {
 						if (data == 0 && $.trim(mem_phone) != '') {
 							var msg = "사용 가능한 번호입니다.";
-							ajaxMsg(msgID, msg);
+							trueMsg(msgID, msg);
 						} else {
 							var msg = "이미 사용중인 번호입니다.";
-							patternCheckMsg(msgID, id, msg);
+							falseMsg(msgID, id, msg);
 						}
 					},
 					error : function(data) {
@@ -167,7 +167,7 @@
 		
 		if(item.search(/\s/) != -1) {
 			var msg = "공백을 포함할 수 없습니다.";
-			patternCheckMsg(msgID, id, msg);
+			falseMsg(msgID, id, msg);
 		}
 	}
 	
@@ -177,7 +177,7 @@
 		var msg = min + "자 ~ " + max + "자 이내로 입력해주세요.";
 		
 		if(item.length < min || item.length > max) {
-			patternCheckMsg(msgID, id, msg);
+			falseMsg(msgID, id, msg);
 		} else {
 			idCheck = true;
 			emailCheck = true;
@@ -189,7 +189,7 @@
 	}
 	
 	// 통과 메세지 출력
-	function ajaxMsg(msgID, msg) {
+	function trueMsg(msgID, msg) {
 		$(msgID).empty();
 		$(msgID).html(msg);
 		$(msgID).css('color', 'green');
@@ -197,7 +197,7 @@
 	}
 	
 	// 에러 메세지 출력
-	function patternCheckMsg(msgID, id, msg) {
+	function falseMsg(msgID, id, msg) {
 		idCheck = false;
 		emailCheck = false;
 		phoneCheck = false;
@@ -216,7 +216,7 @@
 		
 		if(reg_special.test(item) == true) { 
 			var msg = "특수문자는 입력할 수 없습니다.";
-			patternCheckMsg(msgID, id, msg);
+			falseMsg(msgID, id, msg);
 		}
 	}
 	
@@ -227,12 +227,12 @@
 		
 		if(reg_english_num.test(item) == false) { 
 			var msg = "영어와 숫자만 입력할 수 있습니다.";
-			patternCheckMsg(msgID, id, msg);
+			falseMsg(msgID, id, msg);
 		}
 		
 		if(/(\w)\1\1\1/.test(item)){
            	msg = "같은 문자를 4번 이상 사용하실 수 없습니다.";
-           	patternCheckMsg(msgID, id, msg);
+           	falseMsg(msgID, id, msg);
 	    }
 	}
 	
@@ -243,7 +243,7 @@
 		
 		if(reg_number.test(item) == false) {
 			var msg = "숫자만 입력할 수 있습니다.";
-			patternCheckMsg(msgID, id, msg);
+			falseMsg(msgID, id, msg);
 		}
 	}
 </script>
