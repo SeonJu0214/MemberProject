@@ -37,6 +37,25 @@
 			englishNumberPatternCheck(id, msgID);
 		});
 		
+		$("#pw_check").change(function(){
+			// 비밀번호 일치 검사
+			var mem_pw = $("#mem_pw").val();
+			var pw_check = $("#pw_check").val();
+			
+			if(mem_pw != pw_check) {
+				$("#pwChkMsg").empty();
+				$("#pwChkMsg").html("비밀번호가 일치하지 않습니다.");
+				$("#pwChkMsg").css('color', 'red');
+				$("#pw_check").focus();
+				$('button#joinBtn').attr("disabled", true);
+			} else {
+				$('#pwChkMsg').empty();
+				$('#pwChkMsg').html("비밀번호 확인 완료");
+				$('#pwChkMsg').css('color', 'green');
+				$('button#joinBtn').attr("disabled", false);
+			}
+		});
+		
 		$("#mem_email").change(function(){
 			// 문자 길이 검사
 			// 공백 검사
@@ -128,6 +147,11 @@
 			var msg = "영어와 숫자만 입력할 수 있습니다.";
 			patternCheckMsg(msgID, id, msg);
 		}
+		
+		if(/(\w)\1\1\1/.test(item)){
+           	msg = "같은 문자를 4번 이상 사용하실 수 없습니다.";
+           	patternCheckMsg(msgID, id, msg);
+	    }
 	}
 	
 	// 정규식 : 숫자 검사
