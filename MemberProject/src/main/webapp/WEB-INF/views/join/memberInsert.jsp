@@ -39,15 +39,14 @@
 		
 		$("#pw_check").change(function(){
 			// 비밀번호 일치 검사
+			var id = "#pw_check";
+			var msgID = "#pwChkMsg";
 			var mem_pw = $("#mem_pw").val();
-			var pw_check = $("#pw_check").val();
+			var pw_check = $(id).val();
 			
 			if(mem_pw != pw_check) {
-				$("#pwChkMsg").empty();
-				$("#pwChkMsg").html("비밀번호가 일치하지 않습니다.");
-				$("#pwChkMsg").css('color', 'red');
-				$("#pw_check").focus();
-				$('button#joinBtn').attr("disabled", true);
+				var msg = "비밀번호가 일치하지 않습니다.";
+				patternCheckMsg(msgID, id, msg);
 			} else {
 				$('#pwChkMsg').empty();
 				$('#pwChkMsg').html("비밀번호 확인 완료");
