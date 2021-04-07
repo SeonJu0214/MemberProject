@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.kr.mem.member.memberAjaxMapper">
-
+	<!-- [ 회원 가입 ] 실시간 회원 중복 검사 -->
+	<!-- ID 중복 검사 -->
+	<select id="memberIdCount" resultType="java.lang.Integer" parameterType="String">
+		SELECT COUNT(mem_id)
+		FROM member
+		WHERE mem_id = #{mem_id}
+	</select>
+	
+	<!-- 이메일 중복 검사 -->
+	<select id="memberEmailCount" resultType="java.lang.Integer" parameterType="String">
+		SELECT COUNT(mem_email)
+		FROM member
+		WHERE mem_email = #{mem_email}
+	</select>
+	
+	<!-- 전화번호 중복 검사 -->
+	<select id="memberPhoneCount" resultType="java.lang.Integer" parameterType="String">
+		SELECT COUNT(mem_phone)
+		FROM member
+		WHERE mem_phone = #{mem_phone}
+	</select>
 </mapper>

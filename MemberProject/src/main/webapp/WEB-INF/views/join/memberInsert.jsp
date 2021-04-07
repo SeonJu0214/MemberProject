@@ -16,6 +16,10 @@
 <body>
 
 <script type="text/javascript">
+	var idCheck = true;
+	var emailCheck = true;
+	var phoneCheck = true;
+	
 	$(document).ready(function(){
 		$("#mem_id").change(function(){
 			// 문자 길이 검사
@@ -25,6 +29,30 @@
 			
 			lengthCheck(id, 8, 30, msgID);
 			englishNumberPatternCheck(id, msgID);
+			
+			var mem_id = $(id).val();
+			if(idCheck == true) {
+				$.ajax({
+					url : "${root}join/memberIdCount",
+					type : "POST",
+					dataType : "json",
+					data : {
+						"mem_id" : mem_id
+					},
+					success : function(data) {
+						if (data == 0 && $.trim(mem_id) != '') {
+							var msg = "사용 가능한 ID입니다.";
+							ajaxMsg(msgID, msg);
+						} else {
+							var msg = "이미 사용중인 ID입니다.";
+							patternCheckMsg(msgID, id, msg);
+						}
+					},
+					error : function(data) {
+						alert("서버 에러" + data);
+					}
+				});
+			}
 		});
 		
 		$("#mem_pw").change(function(){
@@ -48,10 +76,8 @@
 				var msg = "비밀번호가 일치하지 않습니다.";
 				patternCheckMsg(msgID, id, msg);
 			} else {
-				$('#pwChkMsg').empty();
-				$('#pwChkMsg').html("비밀번호 확인 완료");
-				$('#pwChkMsg').css('color', 'green');
-				$('button#joinBtn').attr("disabled", false);
+				var msg = "비밀번호 확인 완료";
+				ajaxMsg(msgID, msg);
 			}
 		});
 		
@@ -62,6 +88,30 @@
 			var msgID = "#memberEmailCheckMsg";
 			
 			lengthCheck(id, 8, 100, msgID);
+			
+			var mem_email = $(id).val();
+			if(emailCheck == true) {
+				$.ajax({
+					url : "${root}join/memberEmailCount",
+					type : "POST",
+					dataType : "json",
+					data : {
+						"mem_email" : mem_email
+					},
+					success : function(data) {
+						if (data == 0 && $.trim(mem_email) != '') {
+							var msg = "사용 가능한 이메일입니다.";
+							ajaxMsg(msgID, msg);
+						} else {
+							var msg = "이미 사용중인 이메일입니다.";
+							patternCheckMsg(msgID, id, msg);
+						}
+					},
+					error : function(data) {
+						alert("서버 에러" + data);
+					}
+				});
+			}
 		});
 		
 		$("#mem_phone").change(function(){
@@ -72,6 +122,30 @@
 			
 			lengthCheck(id, 8, 20, msgID);
 			numberPatternCheck(id, msgID);
+			
+			var mem_phone = $(id).val();
+			if(phoneCheck == true) {
+				$.ajax({
+					url : "${root}join/memberPhoneCount",
+					type : "POST",
+					dataType : "json",
+					data : {
+						"mem_phone" : mem_phone
+					},
+					success : function(data) {
+						if (data == 0 && $.trim(mem_phone) != '') {
+							var msg = "사용 가능한 번호입니다.";
+							ajaxMsg(msgID, msg);
+						} else {
+							var msg = "이미 사용중인 번호입니다.";
+							patternCheckMsg(msgID, id, msg);
+						}
+					},
+					error : function(data) {
+						alert("서버 에러" + data);
+					}
+				});
+			}
 		});
 		
 		$("#mem_name").change(function(){
@@ -92,11 +166,8 @@
 		var item = $(id).val();
 		
 		if(item.search(/\s/) != -1) {
-			$(msgID).empty();
-			$(msgID).html("공백을 포함할 수 없습니다.");
-			$(msgID).css('color', 'red');
-			$(id).focus();
-			$('button#joinBtn').attr("disabled", true);
+			var msg = "공백을 포함할 수 없습니다.";
+			patternCheckMsg(msgID, id, msg);
 		}
 	}
 	
@@ -106,19 +177,31 @@
 		var msg = min + "자 ~ " + max + "자 이내로 입력해주세요.";
 		
 		if(item.length < min || item.length > max) {
-			$(msgID).empty();
-			$(msgID).html(msg);
-			$(msgID).css('color', 'red');
-			$(id).focus();
-			$('button#joinBtn').attr("disabled", true);
+			patternCheckMsg(msgID, id, msg);
 		} else {
+			idCheck = true;
+			emailCheck = true;
+			phoneCheck = true;
+			
 			$(msgID).html("");
 			$('button#joinBtn').attr("disabled", false);
 		}
 	}
 	
-	// 정규식 에러 메세지 출력
+	// 통과 메세지 출력
+	function ajaxMsg(msgID, msg) {
+		$(msgID).empty();
+		$(msgID).html(msg);
+		$(msgID).css('color', 'green');
+		$('button#joinBtn').attr("disabled", false);
+	}
+	
+	// 에러 메세지 출력
 	function patternCheckMsg(msgID, id, msg) {
+		idCheck = false;
+		emailCheck = false;
+		phoneCheck = false;
+		
 		$(msgID).empty();
 		$(msgID).html(msg);
 		$(msgID).css('color', 'red');
